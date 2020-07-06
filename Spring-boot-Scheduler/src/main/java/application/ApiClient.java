@@ -1,6 +1,7 @@
 package application;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -20,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.time.LocalTime;
 import java.util.Arrays;
 
+@Slf4j
 @Service
 public class ApiClient {
 
@@ -34,7 +36,7 @@ public class ApiClient {
 	@Scheduled(cron = "${cron.expression}")
 	public ResponseEntity<String> callApi(){
 
-		System.out.println(LocalTime.now());
+		log.info("Api execution stated at {}",LocalTime.now());
 
 		String latestEmployeeDetails = getLatestEmployeeDetails(getAuthToken());
 
@@ -42,6 +44,7 @@ public class ApiClient {
 		response.setResponse(latestEmployeeDetails);
 		responseService.save(response);
 
+		log.info("Api execution completed at {}",LocalTime.now());
 		return ResponseEntity.ok(latestEmployeeDetails);
 	}
 
@@ -72,7 +75,7 @@ public class ApiClient {
 		tokenString = tokenString.replace("}","");
 		tokenString = tokenString.replace("\"","");
 		tokenString = tokenString.replace(":","");
-		System.out.println(tokenString);
+
 		return tokenString;
 	}
 }
