@@ -14,8 +14,8 @@ public class Scheduler {
 		SpringApplication.run(Scheduler.class,args);
 	}
 
-	@PostConstruct
-	void init() {
-		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
-	}
+	// @PostConstruct
+	// void init() {
+	// 	TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+	// }
 }
