@@ -35,6 +35,7 @@ public class ApiClient {
 
 		ApiResponse response = new ApiResponse();
 		response.setResponse(latestEmployeeDetails);
+		log.info("API Response {}",latestEmployeeDetails);
 		responseService.save(response);
 
 		log.info("Api execution completed at {}",LocalTime.now());

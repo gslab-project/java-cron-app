@@ -20,6 +20,7 @@ public class ApiResponse {
 	@Column(name = "response_id")
 	private Integer responseId;
 
+	@Column(columnDefinition="TEXT")
 	private String response;
 
 	@Column(name = "api_execution_date")
